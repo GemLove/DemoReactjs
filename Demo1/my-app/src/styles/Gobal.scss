@@ -1,0 +1,219 @@
+$directions: "x", "y", "t", "b", "s", "e", "";
+$entitys: "m", "p";
+$value: "";
+$xs: 577px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1600px;
+
+@for $i from 0 through 5 {
+  @each $direction in $directions {
+    @if $direction == "x" {
+      $value: 0 $i * 8px !important;
+    } @else if $direction == "y" {
+      $value: $i * 8px 0 !important;
+    } @else if $direction == "t" {
+      $value: $i * 8px 0 0 0;
+    } @else if $direction == "b" {
+      $value: 0 0 $i * 8px 0;
+    } @else if $direction == "s" {
+      $value: 0 0 0 $i * 8px;
+    } @else if $direction == "e" {
+      $value: 0 $i * 8px 0 0;
+    } @else {
+      $value: $i * 8px !important;
+    }
+    .m#{$direction}-#{$i} {
+      margin: $value;
+    }
+    .p#{$direction}-#{$i} {
+      padding: $value;
+    }
+  }
+  .border-radius-#{$i} {
+    border-radius: $i * 8px;
+  }
+  .border-raius-l-#{$i} {
+    border-radius: $i * 8px 0 0 $i * 8px;
+    * {
+      border-radius: $i * 8px 0 0 $i * 8px;
+    }
+  }
+}
+
+@mixin Responsive($canvas) {
+  // @each $canva in $canvas {
+  @if $canvas == XS {
+    @media only screen and (max-width: $xs) {
+      @content;
+    }
+  } @else if $canvas == SM {
+    @media only screen and (max-width: $md) {
+      @content;
+    }
+  } @else if $canvas == MD {
+    @media only screen and (max-width: $lg) {
+      @content;
+    }
+  } @else if $canvas == LG {
+    @media only screen and (max-width: $xl) {
+      @content;
+    }
+  } @else if $canvas == XL {
+    @media only screen and (max-width: $xxl) {
+      @content;
+    }
+  } @else if $canvas == XXL {
+    @media only screen and (min-width: $xxl) {
+      @content;
+    }
+  }
+  // }
+}
+html {
+  scroll-behavior: smooth;
+  transition: 5s;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+
+//custom
+#wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.simple-head {
+  background-size: cover;
+  @include Responsive(XS) {
+    max-height: 800px;
+  }
+  @include Responsive(SM) {
+    max-height: 800px;
+  }
+  @include Responsive(MD) {
+    max-height: 800px;
+  }
+  @include Responsive(LG) {
+    min-height: 600px;
+  }
+  @include Responsive(XL) {
+    min-height: 600px;
+  }
+  @include Responsive(XXL) {
+    min-height: 600px;
+  }
+}
+section {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.simple-head .position-center-center {
+  margin-top: 30px;
+  width: 100%;
+  position: absolute;
+  @include Responsive(XS) {
+    position: relative;
+    left: 0%;
+    top: 0%;
+    -webkit-transform: translate(-0%, -0%);
+    -moz-transform: translate(-0%, -0%);
+    -ms-transform: translate(-0%, -0%);
+    transform: translate(-0%, -0%);
+  }
+  @include Responsive(SM) {
+    position: relative;
+    left: 0%;
+    top: 0%;
+    -webkit-transform: translate(-0%, -0%);
+    -moz-transform: translate(-0%, -0%);
+    -ms-transform: translate(-0%, -0%);
+    transform: translate(-0%, -0%);
+  }
+
+}
+
+.position-center-center {
+  left: 50%;
+  position: absolute;
+  top: 40%;
+  -webkit-transform: translate(-50%, -60%);
+  -moz-transform: translate(-50%, -60%);
+  -ms-transform: translate(-50%, -60%);
+  transform: translate(-50%, -60%);
+  color: white;
+  .title {
+    color: white;
+    font-size: 47px;
+  }
+  .description {
+    font-size: 18px;
+    margin-bottom: 60px;
+  }
+}
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  @include Responsive(XS) {
+    max-width: $xs;
+  }
+  @include Responsive(SM) {
+    max-width: $sm;
+  }
+  @include Responsive(MD) {
+    max-width: $md;
+  }
+  @include Responsive(LG) {
+    max-width: $lg;
+  }
+  @include Responsive(XL) {
+    max-width: 960px;
+  }
+}
+
+.particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  background: #fff;
+  position: relative;
+
+}
+.logo {
+  .title {
+    color: white;
+    font-weight: bold;
+  }
+}
+.navbar {
+  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+  
+}
+.navbar-dark {
+  background: rgba(0, 0, 0, 0.9);
+
+}
+
+.text {
+  line-height: 26px;
+  font-size: 16px;
+}
+
+
+
+
